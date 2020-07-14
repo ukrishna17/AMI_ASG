@@ -8,7 +8,7 @@ aws ec2 run-instances \
         --image-id $AMIimg_id \
         --instance-type t2.micro \
         --key-name $keyname \
-        --user-data file://userdata.txt \
+        --user-data file://launchwebsite.sh \
         --security-group-ids $groupId \
         --query 'Instances[*].[InstanceId]' \
-        --output text 
+        --output text
