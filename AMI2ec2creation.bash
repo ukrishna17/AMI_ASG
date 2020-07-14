@@ -12,9 +12,9 @@ instance_id=$(aws ec2 run-instances \
         --security-group-ids $groupId \
         --query 'Instances[*].[InstanceId]' \
         --output text)
-        
+sleep 3m
 aws ec2 create-image --instance-id $instance_id --name "AMItest_V2" --description "AMI for my webserver version2" --query ImageId --output text
 
-sleep 5m
+sleep 3m
 aws ec2 terminate-instances --instance-id $instance_id
 
