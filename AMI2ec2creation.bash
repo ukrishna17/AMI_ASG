@@ -15,6 +15,6 @@ instance_id=$(aws ec2 run-instances \
         
 aws ec2 create-image --instance-id $instance_id --name "AMItest_V2" --description "AMI for my webserver version2" --query ImageId --output text
 
-sleep 1m
+sleep 5m
 aws ec2 terminate-instances --instance-id $instance_id
 
