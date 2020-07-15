@@ -20,8 +20,10 @@ image2_id=$(aws ec2 create-image --instance-id $instance_id --name "AMItest_V2" 
 sleep 3m
 aws ec2 terminate-instances --instance-id $instance_id
 
+sleep 1m
 aws autoscaling create-launch-configuration --launch-configuration-name "lctest_V2" --key-name $lcKeyname --image-id $image2_id --instance-type t2.micro --security-groups $lc_Sg 
 
+sleep 1m
 aws autoscaling update-auto-scaling-group \
 				--auto-scaling-group-name "Autoscaling-testing" \
 				--launch-configuration-name "lctest_V2" \
