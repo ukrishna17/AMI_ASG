@@ -7,9 +7,11 @@ instance_id="i-0a898d55c88c58bcc"
 AMIVersion="AMITest_$version"
 LCVersion="LCTest_$version"
 
-image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver $version" --query ImageId --output text)
+#image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver $version" --query ImageId --output text)
+image_id = "ami-0ef38fe45b30d30f6"
 
-sleep 3m
+#sleep 3m
+
 aws autoscaling create-launch-configuration --launch-configuration-name $LCVersion --key-name $lcKeyname --image-id $image_id --instance-type t2.micro --security-groups $lc_Sg 
 
 sleep 2m
