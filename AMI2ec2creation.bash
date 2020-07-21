@@ -9,12 +9,12 @@ LCVersion="LCTest_$version"
 
 image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver $version" --query ImageId --output text)
 
-sleep 2m
+sleep 3m
 aws autoscaling create-launch-configuration --launch-configuration-name $LCVersion --key-name $lcKeyname --image-id $image_id --instance-type t2.micro --security-groups $lc_Sg 
 
-sleep 1m
+sleep 2m
 aws autoscaling update-auto-scaling-group \
-				--auto-scaling-group-name "Autoscaling-testing_$version" \
+				--auto-scaling-group-name "Autoscaling-testing" \
 				--launch-configuration-name $LCVersion \
 				--min-size 1 \
 				--desired-capacity 2\
