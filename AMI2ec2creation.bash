@@ -8,7 +8,7 @@ LCVersion="LCTest_$version"
 #image_id="ami-0ef38fe45b30d30f6"
 
 
-if [ "$version" != "" ] && ["$instance_id" != "" ] && ["$asgname" != "" ] 
+if [ $version != "" ] && [ $instance_id != "" ] && [ $asgname != "" ] 
 then
     if [ "aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text" != "" ] 
     then 
