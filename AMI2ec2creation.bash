@@ -9,7 +9,8 @@ LCVersion="LCTest_$version"
 existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
 
 
-if [ -z $version && -z $instance_id && -z $asgname ]; then
+if [ -z $version -a -z $instance_id -a -z $asgname ] 
+then
 #   if [ -z $existed ]; then 
      image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver $version" --query ImageId --output text)
  #    sleep 80
