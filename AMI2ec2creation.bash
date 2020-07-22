@@ -6,11 +6,12 @@ lc_Sg="sg-093e2727028157daa"
 AMIVersion="AMITest_$version"
 LCVersion="LCTest_$version"
 #image_id="ami-0ef38fe45b30d30f6"
+existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
 
 
 if [ -z $version ] && [ -z $instance_id ] && [ -z $asgname ] 
 then
-    if [ -z "aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text" ] 
+    if [ -z $existed ] 
     then 
  
         image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver $version" --query ImageId --output text)
