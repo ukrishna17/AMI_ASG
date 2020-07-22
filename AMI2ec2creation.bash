@@ -9,8 +9,8 @@ LCVersion="LCTest_$version"
 existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
 
 
-if [ -z $version ] && [ -z $instance_id ] && [ -z $asgname ]; then
-   if [ -z $existed ]; then 
+if [[ -z $version ]] && [[ -z $instance_id ]] && [[ -z $asgname ]]; then
+   if [[ -z $existed ]]; then 
      image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver $version" --query ImageId --output text)
      sleep 80
      aws autoscaling create-launch-configuration --launch-configuration-name $LCVersion --key-name $lcKeyname --image-id $image_id --user-data file://launchwebsite.sh --instance-type t2.micro --security-groups $lc_Sg 
