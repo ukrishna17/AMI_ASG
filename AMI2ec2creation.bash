@@ -22,7 +22,7 @@ if [ -z $version && -z $instance_id && -z $asgname ]; then
 				--desired-capacity 1\
 				--max-size 1
 #   else 
-      echo "no instance existed with this instance id:$instance_id"
+#      echo "no instance existed with this instance id:$instance_id"
 #   fi
 else
    echo "Don't Pass empty strings $version $instance_id $asgname"
