@@ -9,5 +9,5 @@ sleep 40
 aws autoscaling create-auto-scaling-group \
     --auto-scaling-group-name my-asg1 \ 
     --launch-configuration-name asg-LC \
-    --load-balancer-names TestLB --health-check-type ELB --health-check-grace-period 120 --min-size 1 --max-size 3 \
-    --subnets subnet-06c92527 subnet-36994238 subnet-4f3e0b71 subnet-58f54415 subnet-95e002ca subnet-9b3cdafd
+    --load-balancer-names TestLB --health-check-type ELB --health-check-grace-period 120 --min-size 1 ----desired-capacity 1 --max-size 1 \
+    --vpc-zone-identifier "subnet-06c92527 subnet-36994238 subnet-4f3e0b71 subnet-58f54415 subnet-95e002ca subnet-9b3cdafd"
