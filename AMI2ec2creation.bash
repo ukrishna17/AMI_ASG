@@ -6,11 +6,11 @@ lc_Sg="sg-093e2727028157daa"
 AMIVersion="AMITest_$version"
 LCVersion="LCTest_$version"
 #image_id="ami-0ef38fe45b30d30f6"
-existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
+#existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
 
 
-if [ -z $version -a -z $instance_id -a -z $asgname ] 
-then
+#if [ -z $version -a -z $instance_id -a -z $asgname ] 
+#then
 #   if [ -z $existed ]; then 
      image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver $version" --query ImageId --output text)
  #    sleep 80
@@ -25,6 +25,6 @@ then
 #   else 
 #      echo "no instance existed with this instance id:$instance_id"
 #   fi
-else
-   echo "Don't Pass empty strings $version $instance_id $asgname"
-fi
+#else
+#   echo "Don't Pass empty strings $version $instance_id $asgname"
+#fi
