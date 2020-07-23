@@ -4,11 +4,11 @@ aws elb create-load-balancer \
 --subnets subnet-06c92527 subnet-36994238 subnet-4f3e0b71 subnet-58f54415 subnet-95e002ca subnet-9b3cdafd \
 --security-groups sg-0db5158fbc1023a95
 
-sleep 50
+sleep 40
 
 aws autoscaling create-auto-scaling-group \
     --auto-scaling-group-name "my-asg" \ 
-    --launch-configuration-name "asg-LC" 
+    --launch-configuration-name "asg-LC" \
     --load-balancer-names "TestLB" \
     --health-check-type ELB \
     --subnets subnet-06c92527 subnet-36994238 subnet-4f3e0b71 subnet-58f54415 subnet-95e002ca subnet-9b3cdafd \
