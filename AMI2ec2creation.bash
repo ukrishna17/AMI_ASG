@@ -14,9 +14,7 @@ instance_id=$(aws ec2 run-instances \
         --key-name $lcKeyname \
         --security-group-ids "sg-0b29a2c1579c9651a" \
         --user-data file://launchwebsite.sh \
-        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,
-	
-	alue=pilotinstance}]' \
+        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,value=pilotinstance}]' \
         --query 'Instances[0].InstanceId' \
 	--output text)
 sleep 100
