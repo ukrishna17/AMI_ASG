@@ -1,8 +1,8 @@
 asgname="Autoscaling-testing"
 lcKeyname="asg-keypair"
 lc_Sg="sg-093e2727028157daa"
-AMIVersion="AMITest_V2"
-LCVersion="LCTest_V2"
+AMIVersion="AMITest_V3"
+LCVersion="LCTest_V3"
 #image_id="ami-0ef38fe45b30d30f6"
 #existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
 #instance_id="i-0e968c6cfafbcb7d1"
@@ -14,7 +14,9 @@ instance_id=$(aws ec2 run-instances \
         --key-name $lcKeyname \
         --security-group-ids "sg-0b29a2c1579c9651a" \
         --user-data file://launchwebsite.sh \
-        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=pilotinstance}]' \
+        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,
+	
+	alue=pilotinstance}]' \
         --query 'Instances[0].InstanceId' \
 	--output text)
 sleep 100
