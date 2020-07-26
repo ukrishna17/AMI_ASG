@@ -30,7 +30,7 @@ sleep 100
 				--auto-scaling-group-name $asgname \
 				--launch-configuration-name $LCVersion \
 				--min-size 1 \
-				--desired-capacity 3\
+				--desired-capacity 5\
 				--max-size 10
    sleep 50				
    aws autoscaling update-auto-scaling-group \
