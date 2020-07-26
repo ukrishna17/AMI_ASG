@@ -1,5 +1,4 @@
 version="V2"
-
 asgname="Autoscaling-testing"
 lcKeyname="asg-keypair"
 lc_Sg="sg-093e2727028157daa"
