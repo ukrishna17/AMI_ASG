@@ -16,7 +16,7 @@ LCVersion="LCTest_$version"
      sleep 70
      aws autoscaling create-launch-configuration --launch-configuration-name $LCVersion --key-name $lcKeyname --image-id $image_id --user-data file://launchwebsite.sh --instance-type t2.micro --security-groups $lc_Sg 
      sleep 40
-  
+
      aws autoscaling update-auto-scaling-group \
 				--auto-scaling-group-name $asgname \
 				--launch-configuration-name $LCVersion \
@@ -24,9 +24,9 @@ LCVersion="LCTest_$version"
 				--desired-capacity 3\
 				--max-size 10
    sleep 50				
-    aws autoscaling update-auto-scaling-group \
-				--auto-scaling-group-name $asgname \
-				--desired-capacity 2\
+    #aws autoscaling update-auto-scaling-group \
+#				--auto-scaling-group-name $asgname \
+#				--desired-capacity 2\
 			  
 #   else 
 #      echo "no instance existed with this instance id:$instance_id"
