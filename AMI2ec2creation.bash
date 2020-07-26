@@ -1,9 +1,8 @@
-version="V2"
 asgname="Autoscaling-testing"
 lcKeyname="asg-keypair"
 lc_Sg="sg-093e2727028157daa"
-AMIVersion="AMITest_$version"
-LCVersion="LCTest_$version"
+AMIVersion="AMITest_V2"
+LCVersion="LCTest_V2"
 #image_id="ami-0ef38fe45b30d30f6"
 #existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
 
@@ -21,7 +20,7 @@ sleep 70
 #if [ -z $version -a -z $instance_id -a -z $asgname ] 
 #then
 #   if [ -z $existed ]; then 
-     image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver $version" --query ImageId --output text)
+     image_id=$(aws ec2 create-image --instance-id $instance_id --name $AMIVersion --description "AMI for my webserver V2" --query ImageId --output text)
      sleep 70
      aws autoscaling create-launch-configuration --launch-configuration-name $LCVersion --key-name $lcKeyname --image-id $image_id --instance-type t2.micro --security-groups $lc_Sg 
      sleep 40
@@ -36,8 +35,10 @@ sleep 70
    aws autoscaling update-auto-scaling-group \
 				--auto-scaling-group-name $asgname \
 				--termination-policies "OldestLaunchConfiguration" \
-				--desired-capacity 2\
-			  
+				--desired-capacity 2
+  sleep 30
+  aws ec2 terminate-instances --instance-id $instance_id
+			
 #   else 
 #      echo "no instance existed with this instance id:$instance_id"
 #   fi
