@@ -13,13 +13,12 @@ instance_id=$(aws ec2 run-instances \
         --region us-east-1 \
         --count 1 \
         --instance-type t2.micro \
-        --key-name myvpc-keypair \
-        --security-group-ids $groupId \
-       
+        --key-name $lcKeyname \
+        --security-group-ids "sg-0b29a2c1579c9651a" \
         --user-data file://launchwebsite.sh \
-        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=testec2}]' \
+        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=pilotinstance}]' \
         --query 'Instances[0].InstanceId')
-
+sleep 70
 #if [ -z $version -a -z $instance_id -a -z $asgname ] 
 #then
 #   if [ -z $existed ]; then 
@@ -35,9 +34,10 @@ instance_id=$(aws ec2 run-instances \
 				--desired-capacity 3\
 				--max-size 10
    sleep 50				
-    #aws autoscaling update-auto-scaling-group \
-#				--auto-scaling-group-name $asgname \
-#				--desired-capacity 2\
+   aws autoscaling update-auto-scaling-group \
+				--auto-scaling-group-name $asgname \
+				--termination-policies "OldestLaunchConfiguration" \
+				--desired-capacity 2\
 			  
 #   else 
 #      echo "no instance existed with this instance id:$instance_id"
