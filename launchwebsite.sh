@@ -1,8 +1,8 @@
 #!/bin/bash
 sudo apt-get update
 sudo apt-get install git apache2 -y
-git clone https://github.com/ukrishna17/AMI_ASG.git
 sudo systemctl stop apache2
+git clone https://github.com/ukrishna17/AMI_ASG.git
 sudo rm -rf /var/www/html/*
 sudo cp -r AMI_ASG/index.html /var/www/html/
 sudo systemctl enable apache2
