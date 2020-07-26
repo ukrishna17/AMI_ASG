@@ -1,6 +1,6 @@
 version=$1
-instance_id=$2
-asgname=$3
+
+asgname="Autoscaling-testing"
 lcKeyname="asg-keypair"
 lc_Sg="sg-093e2727028157daa"
 AMIVersion="AMITest_$version"
@@ -8,6 +8,17 @@ LCVersion="LCTest_$version"
 #image_id="ami-0ef38fe45b30d30f6"
 #existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
 
+instance_id=$(aws ec2 run-instances \
+        --image-id ami-0ac80df6eff0e70b5 \
+        --region us-east-1 \
+        --count 1 \
+        --instance-type t2.micro \
+        --key-name myvpc-keypair \
+        --security-group-ids $groupId \
+       
+        --user-data file://launchwebsite.sh \
+        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=testec2}]' \
+        --query 'Instances[0].InstanceId')
 
 #if [ -z $version -a -z $instance_id -a -z $asgname ] 
 #then
