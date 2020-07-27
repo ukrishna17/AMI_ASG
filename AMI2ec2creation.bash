@@ -1,9 +1,9 @@
-version=$1
+version1=$1
 asgname="Autoscaling-testing"
 lcKeyname="asg-keypair"
 lc_Sg="sg-093e2727028157daa"
-AMIVersion="AMITest_$version"
-LCVersion="LCTest_$version"
+AMIVersion="AMITest_$version1"
+LCVersion="LCTest_$version1"
 #image_id="ami-0ef38fe45b30d30f6"
 #existed=$(aws ec2 describe-instances --instance-ids $instance_id --query Reservations[*].Instances[*].[InstanceId] --output text)
 #instance_id="i-0e968c6cfafbcb7d1"
