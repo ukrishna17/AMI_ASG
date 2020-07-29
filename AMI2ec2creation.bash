@@ -18,7 +18,7 @@ instance_id=$(aws ec2 run-instances \
         --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=pilotinstance}]' \
         --query 'Instances[0].InstanceId' \
 	--output text)
-sleep 100
+sleep 150
 #if [ -z $version -a -z $instance_id -a -z $asgname ] 
 #then
 #   if [ -z $existed ]; then 
