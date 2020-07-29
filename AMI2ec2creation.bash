@@ -18,14 +18,14 @@ instance_id=$(aws ec2 run-instances \
         --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=pilotinstance}]' \
         --query 'Instances[0].InstanceId' \
 	--output text)
-sleep 150
+sleep 3m
 #if [ -z $version -a -z $instance_id -a -z $asgname ] 
 #then
 #   if [ -z $existed ]; then 
      image_id=$(aws ec2 create-image --instance-id "$instance_id" --name $AMIVersion --description "AMI for my webserver V2" --query ImageId --output text)
-     sleep 70
+     sleep 2m
      aws autoscaling create-launch-configuration --launch-configuration-name $LCVersion --key-name $lcKeyname --image-id $image_id --instance-type t2.micro --security-groups $lc_Sg 
-     sleep 40
+     sleep 1m
 
      aws autoscaling update-auto-scaling-group \
 				--auto-scaling-group-name $asgname \
@@ -33,12 +33,12 @@ sleep 150
 				--min-size 1 \
 				--desired-capacity 5\
 				--max-size 10
-   sleep 100				
+   sleep 4m				
    aws autoscaling update-auto-scaling-group \
 				--auto-scaling-group-name $asgname \
 				--termination-policies "OldestLaunchConfiguration" \
 				--desired-capacity 2
-  sleep 30
+  sleep 1m
   aws ec2 terminate-instances --instance-id $instance_id
 			
 #   else 
