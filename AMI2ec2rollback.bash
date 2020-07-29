@@ -3,14 +3,14 @@ asgname=$2
 LCVersion="LCTest_$version"
 
      aws autoscaling update-auto-scaling-group \
-				--auto-scaling-group-name $asgname \
-				--min-size 0 \
-				--desired-capacity 0\
-				--max-size 0
-     sleep 50
-     aws autoscaling update-auto-scaling-group \
-				--auto-scaling-group-name $asgname \
+				--auto-scaling-group-name "Autoscaling-testing" \
 				--launch-configuration-name $LCVersion \
 				--min-size 1 \
-				--desired-capacity 1\
-				--max-size 1
+				--desired-capacity 5\
+				--max-size 10
+   sleep 4m				
+   aws autoscaling update-auto-scaling-group \
+				--auto-scaling-group-name "Autoscaling-testing" \
+				--termination-policies "OldestLaunchConfiguration" \
+				--desired-capacity 2
+  sleep 1m
