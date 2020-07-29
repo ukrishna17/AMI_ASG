@@ -23,9 +23,9 @@ sleep 3m
 #then
 #   if [ -z $existed ]; then 
      image_id=$(aws ec2 create-image --instance-id "$instance_id" --name $AMIVersion --description "AMI for my webserver V2" --query ImageId --output text)
-     sleep 1m
+     sleep 2m
      aws autoscaling create-launch-configuration --launch-configuration-name $LCVersion --key-name $lcKeyname --image-id $image_id --instance-type t2.micro --security-groups $lc_Sg 
-     sleep 1m
+     sleep 3m
 
      aws autoscaling update-auto-scaling-group \
 				--auto-scaling-group-name $asgname \
